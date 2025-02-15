@@ -1,36 +1,15 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useSWR from "swr";
 import { ThemedText } from "../../../components/ThemedText";
 import { ThemedView } from "../../../components/ThemedView";
 import { ThumbnailCard } from "../../../components/ui/ThumbnailCard";
-
-type TravelLocation = {
-	id: number;
-	name: string;
-	description: string;
-	rating: number;
-	image_url: string;
-};
-
-const fetcher = (url: string) =>
-	fetch(url, {
-		method: "POST",
-		headers: {
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Headers": "Content-Type",
-		},
-	}).then((res) => res.json());
+import { useDestinations } from "../../../hooks/useDestinations";
 
 export default function HomeScreen() {
 	const { top, bottom } = useSafeAreaInsets();
-	const { data, error, isLoading } = useSWR(
-		"https://cdfvxxcscwbuproxmigr.supabase.co/functions/v1/demo-travel-location-list",
-		fetcher,
-	);
-	const router = useRouter();
+	const { destinations, error, isLoading } = useDestinations();
 
 	return (
 		<>
@@ -47,8 +26,7 @@ export default function HomeScreen() {
 				contentContainerStyle={{ gap: 8 }}
 			>
 				{!isLoading &&
-					data &&
-					data.map((location: TravelLocation) => (
+					destinations.map((location) => (
 						<Link
 							key={location.id}
 							href={{

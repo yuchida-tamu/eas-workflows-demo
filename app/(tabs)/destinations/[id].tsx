@@ -1,30 +1,11 @@
 import { Image, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useSWR from "swr";
 import { ThemedText } from "../../../components/ThemedText";
-type TravelLocation = {
-	id: number;
-	name: string;
-	description: string;
-	rating: number;
-	image_url: string;
-};
-
-const fetcher = (url: string) =>
-	fetch(url, {
-		method: "POST",
-		headers: {
-			"Access-Control-Allow-Origin": "*",
-			"Access-Control-Allow-Headers": "Content-Type",
-		},
-	}).then((res) => res.json());
+import { useDestinations } from "../../../hooks/useDestinations";
 
 export default function DestinationScreen() {
 	const { top, bottom } = useSafeAreaInsets();
-	const { data, error, isLoading } = useSWR(
-		"https://cdfvxxcscwbuproxmigr.supabase.co/functions/v1/demo-travel-location-list",
-		fetcher,
-	);
+	const { destinations } = useDestinations();
 
 	return (
 		<View
@@ -36,9 +17,9 @@ export default function DestinationScreen() {
 				Your Destination
 			</ThemedText>
 
-			{data && (
+			{destinations && (
 				<Image
-					source={{ uri: data[0].image_url }}
+					source={{ uri: destinations[0].image_url }}
 					style={{ width: "100%", height: 200 }}
 				/>
 			)}
