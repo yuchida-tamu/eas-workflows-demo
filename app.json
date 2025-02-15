@@ -45,6 +45,12 @@
         "projectId": "d7421cb1-f248-4a43-b15a-61b658a4fbb1"
       }
     },
-    "owner": "yuchida"
+    "owner": "yuchida",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d7421cb1-f248-4a43-b15a-61b658a4fbb1"
+    }
   }
 }
