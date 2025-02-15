@@ -10,12 +10,12 @@ jobs:
     type: build
     params:
       platform: ios
-      profile: preview
+      profile: development
   e2e:
     type: maestro
     needs: [build]
-    environment: preview 
+    environment: development 
     params:
       build_id: ${{ needs.build.outputs.build_id }}
       flow_path: | 
-        maestro/choose_destination.yml
+        .maestro/choose_destination.yml
