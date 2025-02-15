@@ -15,6 +15,11 @@ export default function RootLayout() {
 				options={{
 					headerShown: false,
 					presentation: "formSheet",
+					sheetGrabberVisible: true,
+					contentStyle: {
+						flex: 1,
+						justifyContent: "space-between",
+					},
 				}}
 			/>
 			<Stack.Screen name="+not-found" />
