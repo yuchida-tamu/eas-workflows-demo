@@ -2,10 +2,11 @@ name: Publish preview update
 
 on:
   pull_request:
-    - 'main'
-    - 'develop'
-  types:
-    - opened
+    branches:
+      - 'main'
+      - 'develop'
+    types:
+      - opened
 
 jobs:
   e2e:
