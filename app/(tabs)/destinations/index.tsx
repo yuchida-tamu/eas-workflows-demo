@@ -1,10 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
+import { Link, useRouter } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useSWR from "swr";
-import { ThemedText } from "../../components/ThemedText";
-import { ThemedView } from "../../components/ThemedView";
-import { ThumbnailCard } from "../../components/ui/ThumbnailCard";
+import { ThemedText } from "../../../components/ThemedText";
+import { ThemedView } from "../../../components/ThemedView";
+import { ThumbnailCard } from "../../../components/ui/ThumbnailCard";
 
 type TravelLocation = {
 	id: number;
@@ -29,6 +30,7 @@ export default function HomeScreen() {
 		"https://cdfvxxcscwbuproxmigr.supabase.co/functions/v1/demo-travel-location-list",
 		fetcher,
 	);
+	const router = useRouter();
 
 	return (
 		<>
@@ -47,14 +49,23 @@ export default function HomeScreen() {
 				{!isLoading &&
 					data &&
 					data.map((location: TravelLocation) => (
-						<ThumbnailCard key={location.id} imageUrl={location.image_url}>
-							<ThemedText type="defaultSemiBold">{location.name}</ThemedText>
-							<ThemedText>{location.description}</ThemedText>
-							<View style={{ flexDirection: "row", alignItems: "center" }}>
-								<Ionicons name="star" size={16} color="orange" />
-								<ThemedText>{location.rating}</ThemedText>
-							</View>
-						</ThumbnailCard>
+						<Link
+							key={location.id}
+							href={{
+								pathname: "/(tabs)/destinations/[id]",
+								params: { id: location.id },
+							}}
+							asChild
+						>
+							<ThumbnailCard imageUrl={location.image_url}>
+								<ThemedText type="defaultSemiBold">{location.name}</ThemedText>
+								<ThemedText>{location.description}</ThemedText>
+								<View style={{ flexDirection: "row", alignItems: "center" }}>
+									<Ionicons name="star" size={16} color="orange" />
+									<ThemedText>{location.rating}</ThemedText>
+								</View>
+							</ThumbnailCard>
+						</Link>
 					))}
 			</ScrollView>
 		</>

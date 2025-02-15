@@ -1,6 +1,7 @@
 import { type PropsWithChildren, memo } from "react";
 import {
 	Image,
+	Pressable,
 	type StyleProp,
 	StyleSheet,
 	View,
@@ -11,15 +12,23 @@ import { ThemedView } from "../ThemedView";
 type Props = {
 	imageUrl: string;
 	containerStyle?: StyleProp<ViewStyle>;
+	onPress?: () => void;
 };
 
 export const ThumbnailCard = memo(
-	({ children, imageUrl, containerStyle }: PropsWithChildren<Props>) => {
+	({
+		children,
+		imageUrl,
+		containerStyle,
+		onPress,
+	}: PropsWithChildren<Props>) => {
 		return (
-			<ThemedView style={[styles.container, containerStyle]}>
-				<Image source={{ uri: imageUrl }} style={styles.thumbnail} />
-				<View style={styles.contentContainer}>{children}</View>
-			</ThemedView>
+			<Pressable onPress={onPress}>
+				<ThemedView style={[styles.container, containerStyle]}>
+					<Image source={{ uri: imageUrl }} style={styles.thumbnail} />
+					<View style={styles.contentContainer}>{children}</View>
+				</ThemedView>
+			</Pressable>
 		);
 	},
 );
