@@ -1,10 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect } from "react";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useSWR from "swr";
 import { ThemedText } from "../../components/ThemedText";
 import { ThemedView } from "../../components/ThemedView";
+import { ThumbnailCard } from "../../components/ui/ThumbnailCard";
 
 type TravelLocation = {
 	id: number;
@@ -57,20 +58,14 @@ export default function HomeScreen() {
 				{!isLoading &&
 					data &&
 					data.map((location: TravelLocation) => (
-						<ThemedView key={location.id} style={styles.itemContainer}>
-							<Image
-								source={{ uri: location.image_url }}
-								style={styles.itemImage}
-							/>
-							<View style={styles.itemBodyContainer}>
-								<ThemedText type="defaultSemiBold">{location.name}</ThemedText>
-								<ThemedText>{location.description}</ThemedText>
-								<View style={{ flexDirection: "row", alignItems: "center" }}>
-									<Ionicons name="star" size={16} color="orange" />
-									<ThemedText>{location.rating}</ThemedText>
-								</View>
+						<ThumbnailCard key={location.id} imageUrl={location.image_url}>
+							<ThemedText type="defaultSemiBold">{location.name}</ThemedText>
+							<ThemedText>{location.description}</ThemedText>
+							<View style={{ flexDirection: "row", alignItems: "center" }}>
+								<Ionicons name="star" size={16} color="orange" />
+								<ThemedText>{location.rating}</ThemedText>
 							</View>
-						</ThemedView>
+						</ThumbnailCard>
 					))}
 			</ScrollView>
 		</>
@@ -83,32 +78,5 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		padding: 16,
 		gap: 8,
-	},
-	itemContainer: {
-		gap: 8,
-		borderRadius: 8,
-		shadowColor: "#000",
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 4,
-		elevation: 5,
-	},
-	reactLogo: {
-		height: 200,
-		bottom: 0,
-		left: 0,
-		position: "absolute",
-	},
-	itemImage: {
-		height: 100,
-		borderTopLeftRadius: 8,
-		borderTopRightRadius: 8,
-	},
-	itemBodyContainer: {
-		paddingHorizontal: 8,
-		paddingVertical: 4,
 	},
 });
