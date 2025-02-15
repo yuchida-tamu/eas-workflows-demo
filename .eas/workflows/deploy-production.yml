@@ -1,4 +1,4 @@
-name: Publish production update
+name: Deploy Production
 
 on:
   push:
