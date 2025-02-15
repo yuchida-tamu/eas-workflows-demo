@@ -1,5 +1,4 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useSWR from "swr";
@@ -31,26 +30,16 @@ export default function HomeScreen() {
 		fetcher,
 	);
 
-	useEffect(() => {
-		console.log(data);
-	}, [data]);
-
-	useEffect(() => {
-		console.log(error);
-	}, [error]);
-
-	useEffect(() => {
-		console.log(isLoading);
-	}, [isLoading]);
-
 	return (
 		<>
-			<ThemedView style={[styles.titleContainer, { paddingTop: top }]}>
-				<ThemedText type="title">Welcome to the Travel App!</ThemedText>
+			<ThemedView style={[styles.titleContainer, { paddingTop: top + 16 }]}>
+				<ThemedText type="title" style={{ textAlign: "center" }}>
+					Find your destination!
+				</ThemedText>
 			</ThemedView>
 			<ScrollView
 				style={{
-					paddingBottom: bottom,
+					paddingVertical: bottom,
 					paddingHorizontal: 16,
 				}}
 				contentContainerStyle={{ gap: 8 }}
@@ -76,6 +65,7 @@ const styles = StyleSheet.create({
 	titleContainer: {
 		flexDirection: "row",
 		alignItems: "center",
+		justifyContent: "center",
 		padding: 16,
 		gap: 8,
 	},
