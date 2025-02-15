@@ -9,11 +9,16 @@ on:
       - opened
 
 jobs:
+  build:
+    type: build
+    params:
+      platform: ios
+      profile: preview
   e2e:
-    name: E2E tests
     type: maestro
+    needs: [build]
     environment: preview 
     params:
-      build_id: a700613f-b3ee-408b-a5cd-820f29a33c21 # TODO: Dynamically set this value
+      build_id: ${{ needs.build.outputs.build_id }}
       flow_path: | 
         maestro/choose_destination.yml
