@@ -5,9 +5,14 @@
 	},
 	"build": {
 		"development": {
+			"withoutCredentials": true,
 			"developmentClient": true,
 			"distribution": "internal",
-			"channel": "development"
+			"channel": "development",
+			"ios": {
+				"simulator": true,
+				"image": "latest"
+			}
 		},
 		"preview": {
 			"distribution": "internal",

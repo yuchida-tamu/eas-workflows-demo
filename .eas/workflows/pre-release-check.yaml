@@ -1,20 +1,21 @@
-name: PR Request
-
+name: Pre Release Check
 on:
-  pull_request_labeled:
-    labels:
-      - 'Preview'
+  pull_request:
+    branches:
+      - 'main'
+    types:
+      - opened
 
 jobs:
   build:
     type: build
     params:
       platform: ios
-      profile: preview
+      profile: development
   e2e:
     type: maestro
     needs: [build]
-    environment: preview 
+    environment: development 
     params:
       build_id: ${{ needs.build.outputs.build_id }}
       flow_path: | 
