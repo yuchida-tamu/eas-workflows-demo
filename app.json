@@ -36,6 +36,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d7421cb1-f248-4a43-b15a-61b658a4fbb1"
+      }
+    },
+    "owner": "yuchida"
   }
 }
