@@ -5,7 +5,7 @@ on:
     branches: ['develop']
 
 jobs:
-  publish_preview_update:
+  publish:
     name: Publish preview update
     type: update
     params:
