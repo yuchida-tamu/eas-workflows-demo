@@ -1,9 +1,9 @@
-name: PR Request
+name: PR Request E2E
 
 on:
   pull_request_labeled:
     labels:
-      - 'Preview'
+      - 'E2E'
 
 jobs:
   build:
@@ -18,4 +18,4 @@ jobs:
     params:
       build_id: ${{ needs.build.outputs.build_id }}
       flow_path: | 
-        .maestro/choose_destination.yml
+        maestro/choose_destination.yml
