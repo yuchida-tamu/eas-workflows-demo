@@ -10,11 +10,11 @@ jobs:
     type: build
     params:
       platform: ios
-      profile: development
+      profile: preview
   e2e:
     type: maestro
     needs: [build]
-    environment: development 
+    environment: preview 
     params:
       build_id: ${{ needs.build.outputs.build_id }}
       flow_path: | 
