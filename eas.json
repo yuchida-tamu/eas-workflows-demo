@@ -16,7 +16,11 @@
 		},
 		"preview": {
 			"distribution": "internal",
-			"channel": "preview"
+			"channel": "preview",
+			"ios": {
+				"simulator": true,
+				"image": "latest"
+			}
 		},
 		"production": {
 			"autoIncrement": true,
