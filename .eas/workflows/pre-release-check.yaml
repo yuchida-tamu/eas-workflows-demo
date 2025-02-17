@@ -1,9 +1,10 @@
-name: PR Request E2E
-
+name: Pre Release Check
 on:
-  pull_request_labeled:
-    labels:
-      - 'E2E'
+  pull_request:
+    branches:
+      - 'main'
+    types:
+      - opened
 
 jobs:
   build:
@@ -15,6 +16,7 @@ jobs:
     type: maestro
     needs: [build]
     environment: preview 
+    image: latest
     params:
       build_id: ${{ needs.build.outputs.build_id }}
       flow_path: | 
