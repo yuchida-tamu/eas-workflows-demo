@@ -1,0 +1,13 @@
+appId: com.yuchida.easworkflowsdemo # This is an example app id. Replace it with your app id.
+---
+- launchApp
+- tapOn: 'Let''s Go!!'
+- scrollUntilVisible:
+    element:
+      text: 'Tokyo The city of lights  4'
+    centerElement: true
+- tapOn:
+    text: 'Tokyo The city of lights  4'
+- assertVisible
+- tapOn: 'Book the place'
+- assertVisible: 'Find your destination!'

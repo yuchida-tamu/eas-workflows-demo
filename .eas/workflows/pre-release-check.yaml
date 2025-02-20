@@ -1,0 +1,23 @@
+name: Pre Release Check
+on:
+  pull_request:
+    branches:
+      - 'main'
+    types:
+      - opened
+
+jobs:
+  build:
+    type: build
+    params:
+      platform: ios
+      profile: preview
+  e2e:
+    type: maestro
+    needs: [build]
+    environment: preview 
+    image: latest
+    params:
+      build_id: ${{ needs.build.outputs.build_id }}
+      flow_path: | 
+        maestro/choose_destination.yml
