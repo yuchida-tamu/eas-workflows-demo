@@ -9,9 +9,8 @@ jobs:
   update:
     type: update
     params:
-      message: E2E test triggered by PR
+      branch: preview  
       platform: ios
-      channel: preview  
 
   e2e:
     needs: [update]
