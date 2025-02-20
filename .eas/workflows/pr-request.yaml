@@ -14,9 +14,10 @@ jobs:
       channel: preview  
 
   e2e:
+    needs: [update]
     steps:
       - name: Run Moropo E2E
-        needs: [update]
+       
         run: >-
           curl -X 'POST' \
           'https://api.moropo.com/testRuns' \
