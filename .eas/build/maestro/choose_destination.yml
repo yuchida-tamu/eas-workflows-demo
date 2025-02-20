@@ -6,7 +6,8 @@ appId: com.yuchida.easworkflowsdemo # This is an example app id. Replace it with
     element:
       text: 'Tokyo The city of lights  4'
     centerElement: true
-- tapOn: 'Tokyo The city of lights  4'
+- tapOn:
+    text: 'Tokyo The city of lights  4'
 - assertVisible
 - tapOn: 'Book the place'
 - assertVisible: 'Find your destination!'
