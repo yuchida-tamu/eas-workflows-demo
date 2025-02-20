@@ -13,7 +13,7 @@ jobs:
       platform: ios
 
   e2e:
-    # needs: [update]
+    needs: [update]
     steps:
       - name: Run Moropo E2E
        
