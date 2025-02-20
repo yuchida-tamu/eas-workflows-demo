@@ -6,19 +6,12 @@ on:
       - 'E2E'
 
 jobs:
-  # build:
-  #   type: build
-  #   params:
-  #     platform: ios
-  #     profile: preview
-  # # e2e:
-  #   type: maestro
-  #   needs: [build]
-  #   environment: preview 
-  #   params:
-  #     build_id: ${{ needs.build.outputs.build_id }}
-  #     flow_path: | 
-  #       maestro/choose_destination.yml
+  update:
+    type: update
+    params:
+      message: E2E test triggered by PR
+      platform: ios
+      channel: preview  
 
   e2e:
     steps:
@@ -27,6 +20,6 @@ jobs:
           curl -X 'POST' \
           'https://api.moropo.com/testRuns' \
           -H 'accept: */*' \
-          -H 'x-app-api-key: $MOROPO_API_KEY' \
+          -H 'x-app-api-key: a4f4ea58-940f-4abe-8f75-f5cbf4dab155' \
           -H 'Content-Type: application/json' \
           -d '{"ciCdId": "7f85fcc7-33a7-416b-b342-cdf16a869dcf"}'
